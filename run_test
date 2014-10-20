@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# p = initial tree chance 
+# c = cluster coefficient
+
+for c in $(seq 0 5 50)
+do
+  for p in $(seq 0.05 0.05 1.0)
+  do
+    for i in $(seq 1 1 10)
+    do
+      echo "./fire -size 500 500 -no-png -gen cluster $p $c 40 -print-short-data data, run $i"
+      ./fire -size 500 500 -no-png -gen cluster $p $c 40 -print-short-data data > /dev/null
+    done
+  done
+done
