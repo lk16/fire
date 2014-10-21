@@ -1,0 +1,27 @@
+fire: a forest fire simulation for university course written in c++ using libpng++
+
+These are the flags fire accepts:
+
+-size <width> <height>
+Required flag. Due to the sloppy implementation of the argument parsing, this flag has to be the first one. Else this may lead to undesired behaviour.
+
+-print-short-data <filename>
+Optional flag. When used, this creates or appends to the specified file a CSV line, mentioning grid size, clustering parameters (see below) and remaining tree percentage.
+
+-no-png
+Optional flag. When used, no PNG files will be outputted.
+
+-gen-only 
+Optional flag. When used, only the initial state will be generated.
+
+-gen <algorithm> <parameters>
+Required flag. This is the general syntax for the initial state generation flag, the amount of parameters depends on the used algorithm. All implemented algorithms are listed below.
+
+-gen uniform <tree chance>
+For each cell the chance is as specified to be a tree. Please refer to state::gen_uniform().
+
+-gen cluster <initial chance> <cluster steps> <k>
+Each cell is first initialised as a tree with given initial chance. Next the clustering algorithm is run for the given amount of iterations and with parameter k. In each iteration each cell becomes a tree with a probability based on itself and its direct neighbours. For more details, please refer to state::gen_cluster().
+
+-gen pattern <code>
+Each code will result in a different hard coded pattern. This particular flag was added for entertaining purposes and is not used anywhere in this report. It works for every grid size. Please refer to state::gen_pattern(), also for the accepted pattern codes. 
